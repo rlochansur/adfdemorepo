@@ -1,0 +1,91 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ADF-ENV-DEV-002"
+		},
+		"ls_AzureSynapseAnalytics_002_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_AzureSynapseAnalytics_002'"
+		},
+		"ls_SqlServerOnPC_adfdemo_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_SqlServerOnPC_adfdemo'",
+			"defaultValue": "Integrated Security=False;Data Source=@{linkedService().serverName};Initial Catalog=@{linkedService().dbName};User ID=@{linkedService().userName};Password=@{linkedService().password}"
+		},
+		"ls_adfstorageacccount_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_adfstorageacccount'"
+		},
+		"SHintegrationRuntimeShared_properties_typeProperties_linkedInfo_resourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/98301a5a-cf56-4c9e-9285-2a76c5d8bb9a/resourcegroups/RG-ADF/providers/Microsoft.DataFactory/factories/ADF-ENV-DEV-001/integrationruntimes/selfHostedIntegrationRuntime1"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ADF-ENV-DEV-002_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_AzureSynapseAnalytics_002_connectionString": {
+						"value": "[parameters('ls_AzureSynapseAnalytics_002_connectionString')]"
+					},
+					"ls_adfstorageacccount_connectionString": {
+						"value": "[parameters('ls_adfstorageacccount_connectionString')]"
+					},
+					"ls_SqlServerOnPC_adfdemo_connectionString": {
+						"value": "[parameters('ls_SqlServerOnPC_adfdemo_connectionString')]"
+					},
+					"SHintegrationRuntimeShared_properties_typeProperties_linkedInfo_resourceId": {
+						"value": "[parameters('SHintegrationRuntimeShared_properties_typeProperties_linkedInfo_resourceId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "ADF-ENV-DEV-002_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ADF-ENV-DEV-002_ArmTemplate_0')]"
+			]
+		}
+	]
+}

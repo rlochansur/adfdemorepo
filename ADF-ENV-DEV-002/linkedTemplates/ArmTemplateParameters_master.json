@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ADF-ENV-DEV-002"
+		},
+		"ls_AzureSynapseAnalytics_002_connectionString": {
+			"value": ""
+		},
+		"ls_SqlServerOnPC_adfdemo_connectionString": {
+			"value": "Integrated Security=False;Data Source=@{linkedService().serverName};Initial Catalog=@{linkedService().dbName};User ID=@{linkedService().userName};Password=@{linkedService().password}"
+		},
+		"ls_adfstorageacccount_connectionString": {
+			"value": ""
+		},
+		"SHintegrationRuntimeShared_properties_typeProperties_linkedInfo_resourceId": {
+			"value": "/subscriptions/98301a5a-cf56-4c9e-9285-2a76c5d8bb9a/resourcegroups/RG-ADF/providers/Microsoft.DataFactory/factories/ADF-ENV-DEV-001/integrationruntimes/selfHostedIntegrationRuntime1"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
