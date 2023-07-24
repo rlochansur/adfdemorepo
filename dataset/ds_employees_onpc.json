@@ -1,0 +1,22 @@
+{
+	"name": "ds_employees_onpc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_SqlServerOnPC_adfdemo",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"dbName": "adfdemo",
+				"userName": "admin",
+				"password": "admin1234"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "auditlog"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

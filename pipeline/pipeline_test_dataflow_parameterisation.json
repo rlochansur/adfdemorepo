@@ -1,0 +1,37 @@
+{
+	"name": "pipeline_test_dataflow_parameterisation",
+	"properties": {
+		"activities": [
+			{
+				"name": "lookup_dataflow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "lookup_dataflow",
+						"type": "DataFlowReference",
+						"parameters": {
+							"DeptCode": "'HR'"
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-07-24T04:02:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

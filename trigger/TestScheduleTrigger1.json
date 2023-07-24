@@ -1,0 +1,30 @@
+{
+	"name": "TestScheduleTrigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "demo_pipeline1",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Month",
+				"interval": 13,
+				"startTime": "2023-07-22T08:55:00",
+				"endTime": "2023-07-23T08:51:00",
+				"timeZone": "Singapore Standard Time",
+				"schedule": {
+					"monthDays": [
+						22
+					]
+				}
+			}
+		}
+	}
+}

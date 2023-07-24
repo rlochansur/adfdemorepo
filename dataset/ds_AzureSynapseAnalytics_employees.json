@@ -1,0 +1,17 @@
+{
+	"name": "ds_AzureSynapseAnalytics_employees",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureSynapseAnalytics_002",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "employeesDetails"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

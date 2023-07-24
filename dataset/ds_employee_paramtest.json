@@ -1,0 +1,25 @@
+{
+	"name": "ds_employee_paramtest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adfstorageacccount",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "employee_paramtest.csv",
+				"folderPath": "output",
+				"container": "adfdemostorage"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

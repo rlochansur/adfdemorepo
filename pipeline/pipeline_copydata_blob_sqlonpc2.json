@@ -1,0 +1,119 @@
+{
+	"name": "pipeline_copydata_blob_sqlonpc2",
+	"properties": {
+		"activities": [
+			{
+				"name": "copydata_blob_sqlonpc",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"preCopyScript": {
+							"value": "@{concat('truncate table ',pipeline().parameters.schemaName,'.', pipeline().parameters.tableName)}",
+							"type": "Expression"
+						},
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_employees_csv",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_employees_onpc1",
+						"type": "DatasetReference",
+						"parameters": {
+							"schemaName": {
+								"value": "@pipeline().parameters.schemaName",
+								"type": "Expression"
+							},
+							"tableName": {
+								"value": "@pipeline().parameters.tableName",
+								"type": "Expression"
+							},
+							"serverName": {
+								"value": "@pipeline().parameters.serverName",
+								"type": "Expression"
+							},
+							"dbName": {
+								"value": "@pipeline().parameters.dbName",
+								"type": "Expression"
+							},
+							"userName": {
+								"value": "@pipeline().parameters.userName",
+								"type": "Expression"
+							},
+							"password": {
+								"value": "@pipeline().parameters.password",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"serverName": {
+				"type": "string",
+				"defaultValue": "LAPTOP-4PH0KPR3"
+			},
+			"dbName": {
+				"type": "string",
+				"defaultValue": "adfdemo"
+			},
+			"userName": {
+				"type": "string",
+				"defaultValue": "admin"
+			},
+			"password": {
+				"type": "string",
+				"defaultValue": "admin1234"
+			},
+			"schemaName": {
+				"type": "string",
+				"defaultValue": "dbo"
+			},
+			"tableName": {
+				"type": "string",
+				"defaultValue": "employees_sql"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-07-23T05:11:07Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,72 @@
+{
+	"name": "ds_SqlServere_employeesDetails",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_SqlServerOnPC_adfdemo",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"serverName": "LAPTOP-4PH0KPR3",
+				"dbName": "adfdemo",
+				"userName": "admin",
+				"password": "admin1234"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Emp ID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "First Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Last Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Email",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Phone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Gender",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Job Title",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Years Of Experience",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Salary",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Country",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Dept Code",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Dept Desc",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "employeesDetails"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
