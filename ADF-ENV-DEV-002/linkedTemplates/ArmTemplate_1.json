@@ -339,7 +339,7 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "demo_pipeline1",
+							"referenceName": "demo_pipeline1_git",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
